@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('click_per_day')->nullable();
             $table->bigInteger('clean_click_in_hour')->nullable();
             $table->bigInteger('clean_click_per_day')->nullable();
+            $table->boolean('status')->default('false');
             $table->timestamps();
 
             // $table->foreign('user_id')

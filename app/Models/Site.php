@@ -14,6 +14,7 @@ class Site extends Model
         'click_per_day',
         'clean_click_in_hour',
         'clean_click_per_day',
+        'status'
     ];
 
     public function keywords()

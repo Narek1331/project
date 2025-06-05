@@ -30,6 +30,7 @@ class SitesImport implements ToCollection
                 if(!$site)
                 {
                     $site = Site::create([
+                        'user_id' => auth()->user()->id,
                         'domain' => $domain,
                         'region' => $region,
                     ]);

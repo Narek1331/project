@@ -11,5 +11,11 @@ class SiteKeyword extends Model
         'name',
         'clicks_per_day',
         'url',
+        'status'
     ];
+
+    public function site()
+    {
+        return $this->belongsTo(Site::class);
+    }
 }

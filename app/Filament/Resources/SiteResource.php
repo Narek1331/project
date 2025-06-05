@@ -227,21 +227,23 @@ class SiteResource extends Resource
                 Tables\Actions\Action::make('download_excel')
                     ->label('')
                     ->action(function ($record) {
-                         $rows = [];
+                        $record->status = true;
+                        $record->save();
+                        //  $rows = [];
 
-                         foreach($record->keywords as $keyword)
-                         {
-                            $rows[] = [
-                                $record->domain,
-                                $keyword->url ?? '',
-                                $keyword->name,
-                                $keyword->clicks_per_day,
-                                $record->region,
-                                'Яндекс'
-                            ];
-                         }
+                        //  foreach($record->keywords as $keyword)
+                        //  {
+                        //     $rows[] = [
+                        //         $record->domain,
+                        //         $keyword->url ?? '',
+                        //         $keyword->name,
+                        //         $keyword->clicks_per_day,
+                        //         $record->region,
+                        //         'Яндекс'
+                        //     ];
+                        //  }
 
-                        app(GoogleSheetsService::class)->insertMany($rows);
+                        // app(GoogleSheetsService::class)->insertMany($rows);
 
                     })
                     ->icon('heroicon-o-play'),
@@ -250,7 +252,11 @@ class SiteResource extends Resource
                     ->icon('heroicon-o-pause')
                     ->color('danger')
                     ->action(function ($record) {
-                        app(GoogleSheetsService::class)->deleteRowsByDomain($record->domain);
+
+                        $record->status = false;
+                        $record->save();
+
+                        // app(GoogleSheetsService::class)->deleteRowsByDomain($record->domain);
                     }),
                 Tables\Actions\EditAction::make(),
 
