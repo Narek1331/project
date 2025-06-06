@@ -8,8 +8,9 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/excel-editor', [ExcelController::class, 'index']);
 });
+
+Route::get('/excel-editor', [ExcelController::class, 'index']);
 
 
 Route::get('/login', function () {

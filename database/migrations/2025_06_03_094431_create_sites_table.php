@@ -21,6 +21,7 @@ return new class extends Migration
             $table->bigInteger('clean_click_in_hour')->nullable();
             $table->bigInteger('clean_click_per_day')->nullable();
             $table->boolean('status')->default('false');
+            $table->string('password')->nullable();
             $table->timestamps();
 
             // $table->foreign('user_id')

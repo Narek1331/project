@@ -11,9 +11,15 @@ use Filament\Notifications\Notification;
 use Filament\Actions\Action;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Closure;
 class ListSites extends ListRecords
 {
     protected static string $resource = SiteResource::class;
+
+    public function getTitle(): string
+    {
+        return env('APP_URL') . '/excel-editor?token=' . base64_encode(auth()->user()->id);
+    }
 
     protected function getHeaderActions(): array
     {
@@ -51,4 +57,10 @@ class ListSites extends ListRecords
     ->modalHeading('Импорт сайтов из Excel'),
         ];
     }
+
+    protected function getTableRecordUrlUsing(): ?Closure
+    {
+        return null;
+    }
+
 }

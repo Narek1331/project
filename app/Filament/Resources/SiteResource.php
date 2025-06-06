@@ -215,6 +215,11 @@ class SiteResource extends Resource
                     ->getStateUsing(function($record) use($adminParam){
                         return $adminParam->one_click_price * $record->keywords->sum('clicks_per_day') . ' ₽';
                     }),
+                TextColumn::make('excel_url')
+                    ->label('URL-адрес Excel')
+                    ->getStateUsing(function($record) {
+                        return env('APP_URL') . '/excel-editor?token=' . base64_encode($record->user_id);
+                    }),
                 TextColumn::make('click_in_hour')
                     ->label('Клики/Час'),
                 TextColumn::make('click_per_day')
@@ -258,14 +263,16 @@ class SiteResource extends Resource
 
                         // app(GoogleSheetsService::class)->deleteRowsByDomain($record->domain);
                     }),
-                Tables\Actions\EditAction::make(),
 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->recordUrl(
+                fn ($record) => null,
+            );
     }
 
     public static function getRelations(): array

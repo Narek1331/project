@@ -17,6 +17,7 @@ class Site extends Model
         'status'
     ];
 
+
     public function keywords()
     {
         return $this->hasMany(SiteKeyword::class,'site_id');

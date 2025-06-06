@@ -12,11 +12,16 @@ class ExcelController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(): \Illuminate\View\View
+    public function index(Request $request): \Illuminate\View\View
     {
+        $userId = base64_decode($request->token);
+
         $siteKeywords = SiteKeyword::with('site')
-            ->whereHas('site', fn($query) => $query->where('user_id', auth()->id())->where('status',true))
-            ->get();
+        ->whereHas('site', function ($query) use ($userId) {
+            $query->where('user_id', $userId)
+                ->where('status', true);
+        })
+        ->get();
 
         $data = $siteKeywords->map(function ($keyword) {
             return [
