@@ -19,8 +19,6 @@ class ExcelController extends Controller
         $user = User::where('excel_token',$token)->first();
         $userId = $user->id;
 
-        dd($userId);
-
         $siteKeywords = SiteKeyword::with('site')
         ->whereHas('site', function ($query) use ($userId) {
             $query->where('user_id', $userId)
