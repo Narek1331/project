@@ -16,6 +16,11 @@ class ExcelController extends Controller
     public function index(Request $request): \Illuminate\View\View
     {
         $token = $request->token;
+
+         if (!$token) {
+            abort(404);
+        }
+
         $user = User::where('excel_token',$token)->first();
         $userId = $user->id;
 
