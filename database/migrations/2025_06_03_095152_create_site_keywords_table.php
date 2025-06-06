@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('url')->nullable();
             $table->bigInteger('clicks_per_day')->default(0);
-            $table->boolean('status')->default('false');
+            $table->boolean('status')->nullable()->default(false);
             $table->timestamps();
 
              $table->foreign('site_id')

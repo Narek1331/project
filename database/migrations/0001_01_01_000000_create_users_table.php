@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->bigInteger('balance')->default(0);
             $table->rememberToken();
+            $table->string('excel_token')->nullable();
             $table->timestamps();
         });
 

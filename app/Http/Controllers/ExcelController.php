@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SiteKeyword;
+use App\Models\User;
 
 class ExcelController extends Controller
 {
@@ -14,7 +15,9 @@ class ExcelController extends Controller
      */
     public function index(Request $request): \Illuminate\View\View
     {
-        $userId = base64_decode($request->token);
+        $token = $request->token;
+        $user = User::where('excel_token',$token)->first();
+        $userId = $user->id;
 
         $siteKeywords = SiteKeyword::with('site')
         ->whereHas('site', function ($query) use ($userId) {

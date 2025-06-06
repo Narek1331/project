@@ -3,8 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Site;
-use App\Observers\SiteObserver;
+use App\Models\{
+    Site,
+    User
+};
+use App\Observers\{
+    SiteObserver,
+    UserObserver
+};
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Site::observe(SiteObserver::class);
+        User::observe(UserObserver::class);
     }
 }

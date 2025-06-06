@@ -18,7 +18,7 @@ class ListSites extends ListRecords
 
     public function getTitle(): string
     {
-        return env('APP_URL') . '/excel-editor?token=' . base64_encode(auth()->user()->id);
+        return env('APP_URL') . '/excel-editor?token=' . auth()->user()->excel_token;
     }
 
     protected function getHeaderActions(): array
