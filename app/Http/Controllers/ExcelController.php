@@ -38,6 +38,7 @@ class ExcelController extends Controller
                 'name' => $keyword->name ?? '',
                 'clicks_per_day' => $keyword->clicks_per_day ?? 0,
                 'region' => $keyword->site->region,
+                'yandex' => 'Яндекс',
             ];
         });
 
