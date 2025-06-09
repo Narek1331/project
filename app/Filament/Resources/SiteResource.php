@@ -224,6 +224,7 @@ class SiteResource extends Resource
                 //
             ])
             ->actions([
+                 Tables\Actions\EditAction::make(),
                 Tables\Actions\Action::make('download_excel')
                     ->label('')
                     ->action(function ($record) {

@@ -71,11 +71,12 @@ class ExcelController extends Controller
         $lines = $siteKeywords->map(function ($keyword) {
             $domain = $keyword->site->domain;
             $name = $keyword->name ?? '';
+            $url = $keyword->url ?? '';
             $clicks = $keyword->clicks_per_day ?? 0;
             $region = $keyword->site->region;
             $yandex = 'Яндекс';
 
-            return "{$domain}:{$name}:{$clicks}:{$region}:{$yandex}";
+            return "{$domain}:{$url}:{$name}:{$clicks}:{$region}:{$yandex}";
         });
 
         $content = $lines->implode("\n");
