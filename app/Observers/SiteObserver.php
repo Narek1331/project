@@ -28,7 +28,7 @@ class SiteObserver
      */
     public function deleted(Site $site): void
     {
-        app(GoogleSheetsService::class)->deleteRowsByDomain($site->domain);
+        // app(GoogleSheetsService::class)->deleteRowsByDomain($site->domain);
     }
 
     /**
